@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>International Telephone Input</title>
+  <link rel="stylesheet" href="build/css/intlTelInput.css">
+  <link rel="stylesheet" href="build/css/demo.css">
+  <style>
+  .hidden{
+  display:none;
+  }
+  </style>
+</head>
+
+<body>
+  <h1>International Telephone Input with country code </h1>
+  <form>
+    <input id="phone" type="tel">
+	<input id="output" type="text" name="Mobile" class="hidden" >
+    <button type="submit">Submit</button>
+	
+  </form>
+
+  <!-- Load jQuery from CDN so can run demo immediately -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="build/js/intlTelInput.js"></script>
+  
+ 
+  <script>
+  // For country code //
+	var input = $("#phone"),
+		output = $("#output");
+		input.intlTelInput
+		({
+		  nationalMode: true,
+		  utilsScript: "https://intl-tel-input.com/node_modules/intl-tel-input/build/js/utils.js" // just for formatting/placeholders etc
+		});
+
+		// listen to "keyup", but also "change" to update when the user selects a country
+		input.on("keyup change", function() {
+		var intlNumber = input.intlTelInput("getNumber");
+		  if (intlNumber) {
+		  // Here you get internation number with country code //
+			output.val(intlNumber);
+		  } 
+		});
+	 $('ul>li').click(function(){
+	
+	 var input = $("#phone"),
+		output = $("#output");
+		input.intlTelInput
+		({
+		  nationalMode: true,
+		  utilsScript: "https://intl-tel-input.com/node_modules/intl-tel-input/build/js/utils.js" // just for formatting/placeholders etc
+		});
+        var intlNumber = input.intlTelInput("getNumber");
+		  if (intlNumber) {
+		  // Here you get internation number with country code //
+			output.val(intlNumber);
+		  } 
+        });
+	$("form").submit(function(){
+
+		var code = document.getElementById('output').value
+		alert(code);
+    });
+  </script>
+
+  
+  </body>
+
+</html>
